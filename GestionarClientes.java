@@ -59,7 +59,7 @@ public class GestionarClientes { //En esta clase, que es la principal, se gestio
             lista.ListaOrdenada(cedula, nombre);
             System.out.println("Listo. Cliente ingresado al sistema de manera satisfactoria. ");
             break;
-            
+        
             case 2:
             System.out.println("Así se encuentra la lista de clientes: ");
             lista.EnlistarClientes();
@@ -69,7 +69,7 @@ public class GestionarClientes { //En esta clase, que es la principal, se gestio
             System.out.println("Saliendo de la aplicación... Nos vemos pronto, hasta luego! ");
             break;
          
-            default:
+            default: 
             System.out.println("Opcion no valida. Intentelo de nuevo. "); } }   
             while (opciones!=3);
             scanner.close(); }
