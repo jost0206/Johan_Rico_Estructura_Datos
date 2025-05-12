@@ -5,41 +5,41 @@ class Nodo:
         self.anterior=None
         self.siguiente=None
 
-class ListaDoble1:
+class ListaCircular:
     def __init__(self):
         self.inicio=None
 
     def inserta_lista_ordenada(self, cedula, nombre):
         nuevo = Nodo(cedula, nombre)
-        if self.inicio is None or cedula<self.inicio.cedula:
-            nuevo.siguiente=self.inicio
-            if self.inicio:
-                self.inicio.anterior=nuevo
+        if self.inicio is None:
+            nuevo.siguiente=nuevo.anterior=nuevo
             self.inicio=nuevo
         else:
-            actual=self.inicio
-            while actual.siguiente and actual.siguiente.cedula<cedula:
+            actual=self.inicio 
+        if cedula<actual.cedula:
+            while actual.siguiente!=self.inicio:
+                actual=actual.siguiente
+            actual.siguiente.amterior=nuevo
+            nuevo.siguiente=self.inicio
+            nuevo.anteior=actual
+            actual.siguiente=nuevo
+            self.inicio.anterior=nuevo
+            self.inicio=nuevo
+        else:
+            while (actual.siguiente!=self.inicio and actual.siguiente.cedula<cedula):
                 actual=actual.siguiente
             nuevo.siguiente=actual.siguiente
-            if actual.siguiente:
-                actual.siguiente.anterior=nuevo
-            actual.siguiente=nuevo
             nuevo.anterior=actual
+            actual.siguiente=nuevo
 
     def listar_a_derecha(self):
-        actual=self.inicio
         resultado=[]
-        while actual:
+        if self.inicio is None:
+            return["La lista está vacía."]
+        actual=self.inicio
+        while True:
             resultado.append(f"{actual.cedula} - {actual.nombre}")
             actual=actual.siguiente
-        return resultado
-
-    def listar_a_izquierda(self):
-        actual=self.inicio
-        while actual and actual.siguiente:
-            actual=actual.siguiente
-        resultado=[]
-        while actual:
-            resultado.append(f"{actual.cedula} - {actual.nombre}")
-            actual=actual.anterior
+            if actual==self.inicio:
+                break
         return resultado
