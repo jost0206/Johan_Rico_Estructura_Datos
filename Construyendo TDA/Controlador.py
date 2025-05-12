@@ -19,6 +19,3 @@ class Controlador:
             self.vista.mostrar_mensaje("La lista está vacía.")
         self.vista.mostrar_resultados(resultado)
 
-    def listar_a_izquierda(self):
-        resultado = self.lista.listar_a_izquierda()
-        self.vista.mostrar_resultados(resultado)
