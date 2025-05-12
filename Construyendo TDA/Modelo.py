@@ -9,38 +9,40 @@ class ListaCircular:
     def __init__(self):
         self.inicio=None
 
-    def inserta_ordenada(self, cedula, nombre):
+    def inserta_lista_ordenada(self, cedula, nombre):
         nuevo = Nodo(cedula, nombre)
         if self.inicio is None:
-            nuevo.siguiente=nuevo.anterior = nuevo
+            nuevo.siguiente=nuevo.anterior=nuevo
             self.inicio=nuevo
         else:
-            actual = self.inicio
-            if cedula < actual.cedula:
-                while actual.siguiente!=self.inicio:
-                    actual=actual.siguiente
+            actual=self.inicio
+        if cedula<actual.cedula:
+            while actual.siguiente!=self.inicio:
+                actual=actual.siguiente
                 actual.siguiente.anterior=nuevo
-                nuevo.siguiente=self.inicio
-                nuevo.anterior=actual
-                actual.siguiente=nuevo
-                self.inicio.anterior=nuevo
-                self.inicio=nuevo
-            else:
-                while (actual.siguiente!=self.inicio and actual.siguiente.cedula<cedula):
-                    actual=actual.siguiente
-                nuevo.siguiente=actual.siguiente
-                nuevo.anterior=actual
-                actual.siguiente.anterior=nuevo
-                actual.siguiente=nuevo
+            nuevo.siguiente=self.inicio
+            nuevo.anterior=actual
+            actual.siguiente=nuevo
+            self.inicio.anterior=nuevo
+            self.inicio=nuevo
+              
+        else:
+            while (actual.siguiente!=self.inicio and actual.siguiente.cedula<cedula):
+                actual=actual.siguiente
+            nuevo.siguiente=actual.siguiente
+            nuevo.anterior=actual
+            actual.siguiente.anterior=nuevo
+            actual.siguiente=nuevo
 
-    def listar_derecha(self):
+    def listar_a_derecha(self):
         resultado=[]
         if self.inicio is None:
-            return ["La lista está vacía."]
+            return ["Lista vacía."]
         actual=self.inicio
         while True:
-            resultado.append(f"{actual.cedula}-{actual.nombre}")
+            resultado.append(f"{actual.cedula} - {actual.nombre}")
             actual=actual.siguiente
-            if actual==self.inicio:
+            if actual == self.inicio:
                 break
         return resultado
+
